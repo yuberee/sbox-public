@@ -69,10 +69,16 @@ public sealed class ModelHitboxes : Component, Component.ExecuteInEditor
 		Clear();
 	}
 
+	/// <summary>
+	/// Invoked when the hitboxes have been rebuilt.
+	/// </summary>
+	public Action HitboxesRebuilt;
+
 	public void Rebuild()
 	{
 		Clear();
 		AddFrom( Renderer );
+		HitboxesRebuilt?.Invoke();
 	}
 
 	void Clear()
